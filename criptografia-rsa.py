@@ -1,22 +1,22 @@
 from random import randint
 
 primo = False
+print('Buscando um primo..')
 
 while not primo:
-    p = (randint(1, 1000))
-    if(p > 1):
-        div = 0
-        for i in range(p):
-            if(i>=1) and (p % i == 0):
-                div += 1
+    p = (randint(10000000000000, 99999999999999))
+    print('random:', p)
+    div = 1
 
-        if(p % 2 != 0) and (div <= 1):
-            primo = True
-            print('primo: ',p)
+    for i in range(p):
+        if(i >= 1) and (p % i == 0):
+            div += 1
 
+        if (div == 3):
+            break
 
+    print('\ndivisores:',div )
 
-
-
-
-
+    if(p % 2 != 0) and (div <= 2):
+        primo = True
+        print('Primo: ',p)
