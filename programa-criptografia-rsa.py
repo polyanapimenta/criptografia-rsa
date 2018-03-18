@@ -26,12 +26,12 @@ def calcularPrimo(bits):
 
 # Etapa 1 - Escolher p e q (números primos) e calcula N=p.q
 
-p = calcularPrimo(40) #parâmetro é qtd. de bits para o núm. randomizado
-q = calcularPrimo(40)
+p = calcularPrimo(30) #parâmetro é qtd. de bits para o núm. randomizado
+q = calcularPrimo(30)
 n = p * q
 
-print('P:', p)
-print('Q: ', q)
-print('N:', n)
+print('P:',p)
+print('Q:',q)
+print('N:',n)
 
 # Etapa 2 - Calcular a função totiente (N) = (p-1).(q-1)
