@@ -30,11 +30,16 @@ p = calcularPrimo(30) #parâmetro é qtd. de bits para o núm. randomizado
 q = calcularPrimo(30)
 n = p * q
 
-print('P:',p)
-print('Q:',q)
+print('p:',p)
+print('q:',q)
 print('N:',n)
 
 # Etapa 2 - Calcular a função totiente ϕ(N) = (p-1).(q-1)
 
 totN = (p-1) * (q-1)
 print('ϕ(N):', totN)
+
+# Etapa 3 – Escolha 1 < e < ϕ(N), talque e e ϕ(N) sejam primos entre si
+
+e = secrets.randbelow(totN)
+print('e:',e)
