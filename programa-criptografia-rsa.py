@@ -34,4 +34,7 @@ print('P:',p)
 print('Q:',q)
 print('N:',n)
 
-# Etapa 2 - Calcular a função totiente (N) = (p-1).(q-1)
+# Etapa 2 - Calcular a função totiente ϕ(N) = (p-1).(q-1)
+
+totN = (p-1) * (q-1)
+print('ϕ(N):', totN)
