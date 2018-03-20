@@ -42,10 +42,30 @@ def paresPrimosEntreSi(totN, e):
 
     return mdc
 
+def modInverse(a,n):
+  i=1
+  while True:
+    c = n * i + 1;
+    if(c%a==0):
+      c = c/a
+      break;
+    i = i+1
+
+  return c
+
+def chavePublica(e, n):
+    P = 3
+    c = (P ** e) % n
+    return c
+
+def chavePrivada(d, n, c):
+    P = (c ** d) % n
+    return P
+
 # Etapa 1 - Escolher p e q (números primos) e calcula N=p.q
 
-p = calcularPrimo(10) #parâmetro é qtd. de bits para o núm. randomizado
-q = calcularPrimo(10)
+p = calcularPrimo(5) #parâmetro é qtd. de bits para o núm. randomizado
+q = calcularPrimo(5)
 n = p * q
 
 print('p:',p)
@@ -70,6 +90,22 @@ print('e:',e)
 print('MDC:', mdc)
 
 #Etapa 4 – Escolha d talque e.d mod ϕ(N) =1
+
+d = modInverse(e, totN)
+print('d:', d)
+
+result = 0
+if result != 1:
+    result = (e * d) % totN
+#print('result:', result)
+
+#Criptografar - Chave Pública
+criptografado = chavePublica(e, n)
+print ('criptografado:', criptografado)
+
+#Decriptografar - Chave Privada
+decriptografar = chavePrivada(d, n, criptografado)
+print ('decriptografado:', decriptografar)
 
 '''
 Explicação função paresPrimosEntreSi():
