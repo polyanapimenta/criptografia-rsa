@@ -1,3 +1,4 @@
+import decimal
 import secrets
 import math
 
@@ -58,14 +59,14 @@ def chavePublica(e, n):
     c = (P ** e) % n
     return c
 
-def chavePrivada(d, n, c):
+def chavePrivada(c, d, n):
     P = (c ** d) % n
     return P
 
 # Etapa 1 - Escolher p e q (números primos) e calcula N=p.q
 
-p = calcularPrimo(5) #parâmetro é qtd. de bits para o núm. randomizado
-q = calcularPrimo(5)
+p = calcularPrimo(10) #parâmetro é qtd. de bits para o núm. randomizado
+q = calcularPrimo(10)
 n = p * q
 
 print('p:',p)
@@ -91,7 +92,7 @@ print('MDC:', mdc)
 
 #Etapa 4 – Escolha d talque e.d mod ϕ(N) =1
 
-d = modInverse(e, totN)
+d = round(modInverse(e, totN))
 print('d:', d)
 
 result = 0
@@ -104,7 +105,7 @@ criptografado = chavePublica(e, n)
 print ('criptografado:', criptografado)
 
 #Decriptografar - Chave Privada
-decriptografar = chavePrivada(d, n, criptografado)
+decriptografar = chavePrivada(criptografado, d, n)
 print ('decriptografado:', decriptografar)
 
 '''
