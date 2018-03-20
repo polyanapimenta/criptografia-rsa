@@ -1,0 +1,7 @@
+validação: 
+https://pt.calcuworld.com/calculadoras-matematicas/calculadora-de-numeros-primos/
+http://ecalc.blogspot.com.br/p/mmc-e-mdc.html
+
+Doc python: https://www.w3resource.com/python/python-for-loop.php
+https://wiki.python.org.br/AprendaProgramar#Entendendo_melhor_o_for
+https://www.programiz.com/python-programming/break-continue
