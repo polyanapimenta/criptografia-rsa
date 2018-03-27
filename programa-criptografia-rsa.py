@@ -1,6 +1,6 @@
-import decimal
 import secrets
 import math
+import string
 
 def calcularPrimo(bits):
     primo = False
@@ -54,14 +54,30 @@ def modInverse(a,n):
 
   return c
 
-def chavePublica(e, n):
-    P = 3
-    c = (P ** e) % n
+def chavePublica(e, n, p):
+    c = (p ** e) % n
     return c
 
 def chavePrivada(c, d, n):
     P = (c ** d) % n
     return P
+
+def abc(letra):
+    i = 1
+    l = letra
+    # print(l)
+
+    while i <= 26:
+        a = list(string.ascii_lowercase[:i])
+        # print(a[i - 1] + ' =', i)
+
+        if l == a[i - 1]:
+            return i
+        elif l == ' ':
+            return 27
+        elif l == 'T':
+            return 28
+        i += 1
 
 # Etapa 1 - Escolher p e q (números primos) e calcula N=p.q
 
@@ -101,8 +117,19 @@ if result != 1:
 #print('result:', result)
 
 #Criptografar - Chave Pública
-criptografado = chavePublica(e, n)
-print ('criptografado:', criptografado)
+print('------------ Criptografando frase ------------\n')
+j = 0
+msg = 'The information security is of great importance to ensure the privacy of communications'
+
+while j <= msg.__len__():
+    b = list(msg)
+    P = abc(b[j])
+    criptografado = chavePublica(e, n, P)
+    print(P, '\t-> ', b[j],' -> ', criptografado)
+    j += 1
+
+print('------------ Decriptografando frase ------------')
+print('criptografado', criptografado)
 
 #Decriptografar - Chave Privada
 decriptografar = chavePrivada(criptografado, d, n)
