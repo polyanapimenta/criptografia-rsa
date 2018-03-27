@@ -6,10 +6,12 @@ def calcularPrimo(bits):
     primo = False
     while not primo:
         p = secrets.randbits(bits)
+        #p = secrets.randbelow(bits)
         div = 1
 
-        while (p % 2 == 0) or (p % 3 == 0) or (p % 5 == 0) or (p % 7 == 0):
-            p = secrets.randbits(bits)
+        while (p % 2 != 1) or (p % 3 != 1) or (p % 5 != 1) or (p % 7 != 1):
+             p = secrets.randbits(bits)
+            #p = secrets.randbelow(bits)
 
         r = math.trunc(p/8)
 
@@ -117,30 +119,42 @@ if result != 1:
 #print('result:', result)
 
 #Criptografar - Chave Pública
-print('------------ Criptografando frase ------------\n')
+print('\n[ ----- Criptografando frase ----- ]\n')
+print('[ ABC\t-> Frase -> Criptografado ]\n')
 j = 0
 msg = 'The information security is of great importance to ensure the privacy of communications'
-
-while j <= msg.__len__():
-    b = list(msg)
+b = list(msg)
+v_cripto = []
+while j < msg.__len__():
     P = abc(b[j])
     criptografado = chavePublica(e, n, P)
+    v_cripto.append(criptografado)
     print(P, '\t-> ', b[j],' -> ', criptografado)
     j += 1
 
-print('------------ Decriptografando frase ------------')
-print('criptografado', criptografado)
-
 #Decriptografar - Chave Privada
-decriptografar = chavePrivada(criptografado, d, n)
-print ('decriptografado:', decriptografar)
+print('\n[ --- Decriptografando frase --- ]\n')
+print('[ Criptografado -> Frase -> ABC ]\n')
+
+#v_decripto = []
+
+k = 0
+while k < msg.__len__():
+    decriptografar = chavePrivada(v_cripto[k], d, n)
+    #v_decripto.append(decriptografar)
+    print(v_cripto[k], '\t-> ', b[k], ' -> ', decriptografar)
+    k += 1
+
+#print('Decriptografado: ',v_decripto)
+#print('Frase',b)
+#print('Criptografado', v_cripto)
 
 '''
 Explicação função paresPrimosEntreSi():
 Dois ou mais números são primos entre si quando o máximo divisor comum (MDC) desses números é 1.)
 
-Nesse processo efetuamos várias divisões até chegar a uma divisão exata.
-#1º) dividimos o número maior (p1) pelo número menor(p2);
+#1º) dividimos o número maior (p1) pelo númerNesse processo efetuamos várias divisões até chegar a uma divisão exata.
+o menor(p2);
 #2º) dividimos o divisor (p2), que é divisor da divisão anterior, por (p3), que é o resto da divisão anterior, e assim sucessivamente;
 #3º) O divisor da divisão exata é (p2). Então m.d.c. entre(p1,p2) = p2 (p3 resto da divisão anterior) 
 
